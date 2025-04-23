@@ -13,34 +13,34 @@ public class Item extends EntityId{
 
     // ATRIBUTOS
 
-    @Column(name = "Descricao", nullable = false)
+    @Column(nullable = false)
     private String descricao;
 
-    @Column(name = "Data_Cadastro", nullable = false)
+    @Column(nullable = false)
     private LocalDateTime data_cadastro;
 
-    @Column(name = "Quantidade", nullable = false)
+    @Column(nullable = false)
     private Long quantidade;
 
-    @Column(name = "Valor", nullable = false)
+    @Column(nullable = false)
     private Long valor;
 
-    @Column(name = "Caminhao", nullable = false)
+    @Column(nullable = false)
     private Boolean caminhao;
 
-    @Column(name = "Anexo", nullable = false)
+    @Column(nullable = false)
     private String anexo;
 
 
     // ENUMS
 
-    @Column(name = "Categoria", nullable = false)
+    @Column(nullable = false)
     private Categoria categoria;
 
-    @Column(name = "Estado_Conservacao", nullable = false)
+    @Column(nullable = false)
     private EstadoConservacao estadoConservacao;
 
-    @Column(name = "Situacao", nullable = false)
+    @Column(nullable = false)
     private Situacao situacao;
 
 
