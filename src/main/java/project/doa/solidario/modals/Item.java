@@ -1,7 +1,6 @@
 package project.doa.solidario.modals;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
+import jakarta.persistence.*;
 import project.doa.solidario.modals.enums.Categoria;
 import project.doa.solidario.modals.enums.EstadoConservacao;
 import project.doa.solidario.modals.enums.Situacao;
@@ -12,7 +11,6 @@ import java.time.LocalDateTime;
 public class Item extends EntityId{
 
     // ATRIBUTOS
-
     @Column(nullable = false)
     private String descricao;
 
@@ -33,20 +31,25 @@ public class Item extends EntityId{
 
 
     // ENUMS
-
+    @Enumerated(EnumType.STRING)
     @Column(nullable = false)
     private Categoria categoria;
 
+    @Enumerated(EnumType.STRING)
     @Column(nullable = false)
     private EstadoConservacao estadoConservacao;
 
+    @Enumerated(EnumType.STRING)
     @Column(nullable = false)
     private Situacao situacao;
 
+    //INTEGRAÇÃO
+    @ManyToOne
+    @JoinColumn(nullable = false)
+    private SubCategoria subCategoria;
+
 
     // GET AND SET
-
-
     public String getDescricao() {
         return descricao;
     }
@@ -119,9 +122,16 @@ public class Item extends EntityId{
         this.situacao = situacao;
     }
 
+    public SubCategoria getSubCategoria() {
+        return subCategoria;
+    }
+
+    public void setSubCategoria(SubCategoria subCategoria) {
+        this.subCategoria = subCategoria;
+    }
+
 
     // TOSTRING
-
     @Override
     public String toString() {
         return "Item{" +
@@ -134,6 +144,7 @@ public class Item extends EntityId{
                 ", categoria=" + categoria +
                 ", estadoConservacao=" + estadoConservacao +
                 ", situacao=" + situacao +
+                ", subCategoria=" + subCategoria +
                 '}';
     }
 }
