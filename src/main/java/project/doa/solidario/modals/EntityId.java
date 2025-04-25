@@ -1,10 +1,7 @@
 package project.doa.solidario.modals;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.MappedSuperclass;
-import org.springframework.data.annotation.Id;
+import jakarta.persistence.*;
+
 
 @MappedSuperclass
 public class EntityId {
