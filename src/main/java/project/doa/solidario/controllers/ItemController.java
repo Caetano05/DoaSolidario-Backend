@@ -29,8 +29,8 @@ public class ItemController {
     }
     @GetMapping("/{id}")
     public  ResponseEntity findById(@PathVariable("id") Long id){
-        Item itens = serviceItem.buscarPorId(id);
-        return ResponseEntity.ok().body(itens);
+        Item iten = serviceItem.buscarPorId(id);
+        return ResponseEntity.ok().body(iten);
     }
     @DeleteMapping("/{id}")
     public  ResponseEntity remove(@PathVariable("id") Long id){
