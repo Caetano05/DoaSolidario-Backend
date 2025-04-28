@@ -24,12 +24,12 @@ public class ItemController {
 
     @GetMapping
     public  ResponseEntity findAll(){
-        List<Item> itens = serviceItem.buscaTodos();
+        List<Item> itens = serviceItem.listarTodos();
         return ResponseEntity.ok(itens);
     }
     @GetMapping("/{id}")
     public  ResponseEntity findById(@PathVariable("id") Long id){
-        Item iten = serviceItem.buscarPorId(id);
+        Item iten = serviceItem.listarPorId(id);
         return ResponseEntity.ok().body(iten);
     }
     @DeleteMapping("/{id}")

@@ -19,12 +19,12 @@ public class ItemService {
     }
 
     //LISTAGEM DOS ITENS
-    public List<Item> buscaTodos() {
+    public List<Item> listarTodos() {
         return repositorioItem.findAll();
     }
 
     //LISTA ITEM POR ID
-    public Item buscarPorId(Long id){
+    public Item listarPorId(Long id){
         return repositorioItem.findById(id).orElse(null);
     }
 
