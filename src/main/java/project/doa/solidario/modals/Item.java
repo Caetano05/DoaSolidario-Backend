@@ -49,7 +49,7 @@ public class Item extends EntityId{
     private SubCategoria subCategoria;
 
 
-    // GET AND SET
+    //GET AND SET
     public String getDescricao() {
         return descricao;
     }
@@ -126,12 +126,8 @@ public class Item extends EntityId{
         return subCategoria;
     }
 
-    public void setSubCategoria(SubCategoria subCategoria) {
-        this.subCategoria = subCategoria;
-    }
 
-
-    // TOSTRING
+    //TOSTRING
     @Override
     public String toString() {
         return "Item{" +
