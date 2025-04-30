@@ -2,6 +2,9 @@ package project.doa.solidario.modals;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
+import project.doa.solidario.modals.enums.PerfilAcesso;
 
 import javax.xml.crypto.Data;
 import java.time.LocalDate;
@@ -9,24 +12,28 @@ import java.time.LocalDate;
 @Entity
 public class Usuario extends EntityId{
 
-@Column(nullable = false)
+    //ATRIBUTOS
+    @Column(nullable = false)
     private String nome;
 
-@Column(nullable = false)
+    @Column(nullable = false)
     private Long cpf;
 
-@Column(nullable = false)
+    @Column(nullable = false)
     private LocalDate dataNascimento;
 
-@Column(nullable = false)
+    @Column(nullable = false)
     private String email;
 
-@Column(nullable = false)
+    @Column(nullable = false)
     private String senha;
 
-@Column(nullable = false)
-    private String permissao;
+    //ENUM
+    @Enumerated(EnumType.STRING)
+    @Column(nullable = false)
+    private PerfilAcesso perfilAcesso;
 
+    //GET AND SET
     public String getNome() {
         return nome;
     }
@@ -67,14 +74,15 @@ public class Usuario extends EntityId{
         this.senha = senha;
     }
 
-    public String getPermissao() {
-        return permissao;
+    public PerfilAcesso getPerfilAcesso() {
+        return perfilAcesso;
     }
 
-    public void setPermissao(String permissao) {
-        this.permissao = permissao;
+    public void setPerfilAcesso(PerfilAcesso perfilAcesso) {
+        this.perfilAcesso = perfilAcesso;
     }
 
+    //TOSTRING
     @Override
     public String toString() {
         return "Usuario{" +
@@ -83,7 +91,7 @@ public class Usuario extends EntityId{
                 ", dataNascimento=" + dataNascimento +
                 ", email='" + email + '\'' +
                 ", senha='" + senha + '\'' +
-                ", permissao='" + permissao + '\'' +
+                ", perfilAcesso=" + perfilAcesso +
                 '}';
     }
 }

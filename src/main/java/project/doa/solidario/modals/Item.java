@@ -44,7 +44,7 @@ public class Item extends EntityId{
     private Situacao situacao;
 
 
-    // GET AND SET
+    //GET AND SET
 
 
     public String getDescricao() {
@@ -120,7 +120,7 @@ public class Item extends EntityId{
     }
 
 
-    // TOSTRING
+    //TOSTRING
 
     @Override
     public String toString() {
