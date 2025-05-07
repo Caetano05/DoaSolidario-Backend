@@ -3,6 +3,7 @@ package project.doa.solidario.services;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import project.doa.solidario.modals.Item;
+import project.doa.solidario.modals.enums.Categoria;
 import project.doa.solidario.repositories.ItemRepository;
 
 import java.util.List;
@@ -19,8 +20,12 @@ public class ItemService {
     }
 
     //LISTAGEM DOS ITENS
-    public List<Item> listarTodos() {
-        return repositorioItem.findAll();
+    public List<Item> listarTodos(Categoria categoria) {
+        if(categoria == null) {
+            return repositorioItem.findAll();
+        }
+        
+        return repositorioItem.findByCategoria(categoria);
     }
 
     //LISTA ITEM POR ID

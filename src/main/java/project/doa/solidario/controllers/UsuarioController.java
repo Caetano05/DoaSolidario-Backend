@@ -5,6 +5,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
+import project.doa.solidario.modals.Item;
 import project.doa.solidario.modals.Usuario;
 import project.doa.solidario.services.UsuarioService;
 
@@ -21,7 +22,7 @@ public class UsuarioController {
     @PostMapping
     public ResponseEntity create(@RequestBody Usuario entity){
         Usuario save = serviceUsuario.salvar(entity);
-        return ResponseEntity.created(URI.create("api/usuario" + entity.getId())).body(save);
+        return ResponseEntity.created(URI.create("/api/usuario/" + entity.getId())).body(save);
     }
 
     @GetMapping
