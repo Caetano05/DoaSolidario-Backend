@@ -21,12 +21,12 @@ public class Item extends EntityId{
     private Long quantidade;
 
     @Column(nullable = false)
-    private Long valor;
+    private Double valor;
 
     @Column(nullable = false)
     private Boolean caminhao;
 
-    @Column(nullable = false)
+    @Column()
     private String anexo;
 
 
@@ -74,11 +74,11 @@ public class Item extends EntityId{
         this.quantidade = quantidade;
     }
 
-    public Long getValor() {
+    public Double getValor() {
         return valor;
     }
 
-    public void setValor(Long valor) {
+    public void setValor(Double valor) {
         this.valor = valor;
     }
 
