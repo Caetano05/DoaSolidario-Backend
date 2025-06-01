@@ -45,7 +45,7 @@ public class Item extends EntityId{
 
     //INTEGRAÇÃO
     @ManyToOne
-    @JoinColumn(nullable = false)
+    @JoinColumn()
     private SubCategoria subCategoria;
 
 
