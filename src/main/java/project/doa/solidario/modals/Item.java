@@ -48,7 +48,6 @@ public class Item extends EntityId{
     @JoinColumn()
     private SubCategoria subCategoria;
 
-
     //GET AND SET
     public String getDescricao() {
         return descricao;
