@@ -17,8 +17,8 @@ public class Endereco extends EntityId{
     @Column(nullable = true)
     private Long numero;
 
-    @ManyToOne
-    @JoinColumn(nullable = true)
+    @Enumerated(EnumType.STRING)
+    @Column(nullable = false)
     private Estado estado;
 
     public String getCidade() {
