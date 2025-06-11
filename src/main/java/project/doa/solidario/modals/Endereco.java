@@ -1,10 +1,9 @@
 package project.doa.solidario.modals;
 
 import jakarta.persistence.*;
-import project.doa.solidario.modals.enums.Categoria;
 import project.doa.solidario.modals.enums.Estado;
 
-public class Endereco {
+public class Endereco extends EntityId{
 
     @Column(nullable = false)
     private String cidade;
