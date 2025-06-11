@@ -23,9 +23,6 @@ public class ItemController {
         return ResponseEntity.created(null).body(save);
     }
 
-
-
-
     @GetMapping
     public  ResponseEntity findAll(Categoria categoria){
         List<Item> itens = serviceItem.listarTodos(categoria);

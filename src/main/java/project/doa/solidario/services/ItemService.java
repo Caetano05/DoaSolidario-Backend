@@ -47,6 +47,8 @@ public class ItemService {
             item.setCategoria(ItemAlterado.getCategoria());
             item.setEstadoConservacao(ItemAlterado.getEstadoConservacao());
             item.setSituacao(ItemAlterado.getSituacao());
+            item.setSubCategoria(ItemAlterado.getSubCategoria());
+            item.setPessoa(ItemAlterado.getPessoa());
             return repositorioItem.save(item);
         }
 
