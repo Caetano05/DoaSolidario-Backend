@@ -20,8 +20,11 @@ public class ItemController {
     @PostMapping
     public ResponseEntity create(@RequestBody Item entity){
         Item save = serviceItem.salvar(entity);
-        return ResponseEntity.created(URI.create("/api/item/" + entity.getId())).body(save);
+        return ResponseEntity.created(null).body(save);
     }
+
+
+
 
     @GetMapping
     public  ResponseEntity findAll(Categoria categoria){

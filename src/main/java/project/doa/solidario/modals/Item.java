@@ -5,6 +5,7 @@ import project.doa.solidario.modals.enums.Categoria;
 import project.doa.solidario.modals.enums.EstadoConservacao;
 import project.doa.solidario.modals.enums.Situacao;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 @Entity
@@ -15,7 +16,7 @@ public class Item extends EntityId{
     private String descricao;
 
     @Column(nullable = false)
-    private LocalDateTime data_cadastro;
+    private LocalDate data_cadastro;
 
     @Column(nullable = false)
     private Long quantidade;
@@ -23,7 +24,7 @@ public class Item extends EntityId{
     @Column(nullable = false)
     private Double valor;
 
-    @Column(nullable = false)
+    @Column( )
     private Boolean caminhao;
 
     @Column()
@@ -45,8 +46,10 @@ public class Item extends EntityId{
 
     //INTEGRAÇÃO
     @ManyToOne
-    @JoinColumn()
+    @JoinColumn(nullable = true)
     private SubCategoria subCategoria;
+
+
 
     //GET AND SET
     public String getDescricao() {
@@ -57,12 +60,16 @@ public class Item extends EntityId{
         this.descricao = descricao;
     }
 
-    public LocalDateTime getData_cadastro() {
+    public LocalDate getData_cadastro() {
         return data_cadastro;
     }
 
-    public void setData_cadastro(LocalDateTime data_cadastro) {
+    public void setData_cadastro(LocalDate data_cadastro) {
         this.data_cadastro = data_cadastro;
+    }
+
+    public void setSubCategoria(SubCategoria subCategoria) {
+        this.subCategoria = subCategoria;
     }
 
     public Long getQuantidade() {
