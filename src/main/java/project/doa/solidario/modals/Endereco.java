@@ -2,7 +2,7 @@ package project.doa.solidario.modals;
 
 import jakarta.persistence.*;
 import project.doa.solidario.modals.enums.Estado;
-
+@Entity
 public class Endereco extends EntityId{
 
     @Column(nullable = false)

@@ -15,8 +15,8 @@ public class Pessoa extends EntityId{
     @Column(nullable = false)
     private String email;
 
-    @ManyToOne
-    @JoinColumn(nullable = false)
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "endereco_id")
     private Endereco endereco;
 
 

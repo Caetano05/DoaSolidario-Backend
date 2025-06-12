@@ -49,8 +49,9 @@ public class Item extends EntityId{
     @JoinColumn(nullable = true)
     private SubCategoria subCategoria;
 
-    @ManyToOne
-    @JoinColumn(nullable = false)
+    //PESSOA EM CACHE E SALVA JUNTO
+    @ManyToOne(cascade = CascadeType.PERSIST)
+    @JoinColumn(name = "pessoa_id")
     private Pessoa pessoa;
 
 
