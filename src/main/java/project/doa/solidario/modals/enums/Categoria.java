@@ -4,6 +4,6 @@ public enum Categoria {
 
     ELETRONICO,
     ELETRODOMESTICO,
-    TEXIL,
+    TEXTIL,
     MOVEL
 }
