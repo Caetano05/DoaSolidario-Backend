@@ -36,6 +36,7 @@ public class PessoaService {
             pessoa.setNome(PessoaAlterado.getNome());
             pessoa.setCpf(PessoaAlterado.getCpf());
             pessoa.setEmail(PessoaAlterado.getEmail());
+            pessoa.setEndereco(PessoaAlterado.getEndereco());
             return repositorioPessoa.save(pessoa);
         }
 

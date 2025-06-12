@@ -2,9 +2,13 @@ package project.doa.solidario.services;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import project.doa.solidario.modals.Endereco;
 import project.doa.solidario.modals.Item;
+import project.doa.solidario.modals.Pessoa;
 import project.doa.solidario.modals.enums.Categoria;
+import project.doa.solidario.repositories.EnderecoRepository;
 import project.doa.solidario.repositories.ItemRepository;
+import project.doa.solidario.repositories.PessoaRepository;
 
 import java.util.List;
 import java.util.Optional;
@@ -14,8 +18,28 @@ public class ItemService {
     @Autowired
     private ItemRepository repositorioItem;
 
+    @Autowired
+    private PessoaRepository repositorioPessoa;
+
+    @Autowired
+    private EnderecoRepository repositorioEndereco;
+
     //SALVA O ITEM
-    public Item salvar(Item entity){
+    public Item salvar(Item entity) {
+        if (entity.getPessoa() != null) {
+            Pessoa pessoa = entity.getPessoa();
+
+            if (pessoa.getEndereco() != null && pessoa.getEndereco().getId() == null) {
+                Endereco enderecoSalvo = repositorioEndereco.save(pessoa.getEndereco());
+                pessoa.setEndereco(enderecoSalvo);
+            }
+
+            if (pessoa.getId() == null) {
+                pessoa = repositorioPessoa.save(pessoa);
+                entity.setPessoa(pessoa);
+            }
+        }
+
         return repositorioItem.save(entity);
     }
 
@@ -47,6 +71,8 @@ public class ItemService {
             item.setCategoria(ItemAlterado.getCategoria());
             item.setEstadoConservacao(ItemAlterado.getEstadoConservacao());
             item.setSituacao(ItemAlterado.getSituacao());
+            item.setSubCategoria(ItemAlterado.getSubCategoria());
+            item.setPessoa(ItemAlterado.getPessoa());
             return repositorioItem.save(item);
         }
 

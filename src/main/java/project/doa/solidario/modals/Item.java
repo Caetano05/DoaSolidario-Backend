@@ -24,7 +24,7 @@ public class Item extends EntityId{
     @Column(nullable = false)
     private Double valor;
 
-    @Column( )
+    @Column()
     private Boolean caminhao;
 
     @Column()
@@ -49,9 +49,24 @@ public class Item extends EntityId{
     @JoinColumn(nullable = true)
     private SubCategoria subCategoria;
 
+    //PESSOA EM CACHE E SALVA JUNTO
+    @ManyToOne(cascade = CascadeType.PERSIST)
+    @JoinColumn(name = "pessoa_id")
+    private Pessoa pessoa;
+
 
 
     //GET AND SET
+
+
+    public Pessoa getPessoa() {
+        return pessoa;
+    }
+
+    public void setPessoa(Pessoa pessoa) {
+        this.pessoa = pessoa;
+    }
+
     public String getDescricao() {
         return descricao;
     }
@@ -134,6 +149,7 @@ public class Item extends EntityId{
 
 
     //TOSTRING
+
     @Override
     public String toString() {
         return "Item{" +
@@ -147,6 +163,7 @@ public class Item extends EntityId{
                 ", estadoConservacao=" + estadoConservacao +
                 ", situacao=" + situacao +
                 ", subCategoria=" + subCategoria +
+                ", pessoa=" + pessoa +
                 '}';
     }
 }
