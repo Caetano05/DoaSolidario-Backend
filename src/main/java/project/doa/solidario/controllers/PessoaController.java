@@ -4,17 +4,22 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import project.doa.solidario.modals.Pessoa;
+import project.doa.solidario.repositories.PessoaRepository;
 import project.doa.solidario.services.PessoaService;
 
 import java.net.URI;
 import java.util.List;
 
 @RestController
+//url tem que ser no plural(corrigir)
 @RequestMapping("api/pessoa")
 public class PessoaController {
 
     @Autowired
     private PessoaService servicePessoa;
+
+    @Autowired
+    private PessoaRepository repositorioPessoa;
 
     @PostMapping
     public ResponseEntity create(@RequestBody Pessoa entity){
@@ -26,6 +31,12 @@ public class PessoaController {
     public  ResponseEntity findAll(){
         List<Pessoa> pessoas = servicePessoa.listarTodos();
         return ResponseEntity.ok(pessoas);
+    }
+
+    //Endpoint para filtrar pessoa pelo nome (ex: /pessoas/filtro?nome=joao)
+    @GetMapping("/pessoas/filtro")
+    public List<Pessoa> buscarPessoasPorNome(@RequestParam String nome) {
+        return repositorioPessoa.findByNomeContainingIgnoreCase(nome);
     }
 
     @GetMapping("/{id}")
