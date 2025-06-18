@@ -34,7 +34,7 @@ public class ItemService {
                 pessoa.setEndereco(enderecoSalvo);
             }
 
-            if (pessoa.getId() == null) {
+            if (pessoa.getCpf() == null) {
                 pessoa = repositorioPessoa.save(pessoa);
                 entity.setPessoa(pessoa);
             }
