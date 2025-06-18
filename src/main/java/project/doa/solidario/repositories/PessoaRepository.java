@@ -8,5 +8,5 @@ import java.util.List;
 
 @Repository
 public interface PessoaRepository extends JpaRepository<Pessoa, Long> {
-    List<Pessoa> findByNomeContainingIgnoreCase(String nome);
+    List<Pessoa> findByNomeContainingIgnoreCase(Long cpf);
 }

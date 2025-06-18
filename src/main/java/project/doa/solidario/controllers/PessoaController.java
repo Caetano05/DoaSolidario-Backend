@@ -33,10 +33,10 @@ public class PessoaController {
         return ResponseEntity.ok(pessoas);
     }
 
-    //Endpoint para filtrar pessoa pelo nome (ex: /pessoas/filtro?nome=joao)
+    //Endpoint para filtrar pessoa pelo cpf (ex: /pessoas/filtro?cpf=joao)
     @GetMapping("/pessoas/filtro")
-    public List<Pessoa> buscarPessoasPorNome(@RequestParam String nome) {
-        return repositorioPessoa.findByNomeContainingIgnoreCase(nome);
+    public List<Pessoa> buscarPessoasPorCpf(@RequestParam String cpf) {
+        return repositorioPessoa.findByNomeContainingIgnoreCase(cpf);
     }
 
     @GetMapping("/{id}")
