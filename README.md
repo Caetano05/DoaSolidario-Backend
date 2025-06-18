@@ -21,7 +21,7 @@ git push -u origin NomedaNovaBranche
 
 ESTRUTURA DE COMMIT
 
-feat: para adicionar um novo recurso;
+feat/fiat: para adicionar um novo recurso;
 
 fix: para corrigir um bug;
 
