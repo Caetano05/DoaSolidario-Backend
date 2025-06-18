@@ -35,7 +35,7 @@ public class PessoaController {
 
     //Endpoint para filtrar pessoa pelo cpf (ex: /pessoas/filtro?cpf=joao)
     @GetMapping("/pessoas/filtro")
-    public List<Pessoa> buscarPessoasPorCpf(@RequestParam String cpf) {
+    public List<Pessoa> buscarPessoasPorCpf(@RequestParam Long cpf) {
         return repositorioPessoa.findByNomeContainingIgnoreCase(cpf);
     }
 
