@@ -33,10 +33,14 @@ public class PessoaController {
         return ResponseEntity.ok(pessoas);
     }
 
-    //Endpoint para filtrar pessoa pelo cpf (ex: /pessoas/filtro?cpf=joao)
-    @GetMapping("/pessoas/filtro")
-    public List<Pessoa> buscarPessoasPorCpf(@RequestParam Long cpf) {
-        return repositorioPessoa.findByNomeContainingIgnoreCase(cpf);
+    //Endpoint para filtrar pessoa pelo cpf digitando(ex: /pessoas/filtro?cpf=12345678910)
+    @GetMapping("/filtro")
+    public ResponseEntity<Pessoa> buscarPessoasPorCpf(@RequestParam String cpf) {
+        Pessoa pessoa = repositorioPessoa.findByCpf(cpf);
+        if (pessoa == null) {
+            return ResponseEntity.notFound().build();
+        }
+        return ResponseEntity.ok(pessoa);
     }
 
     @GetMapping("/{id}")
