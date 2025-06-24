@@ -6,7 +6,7 @@ import project.doa.solidario.modals.enums.EstadoConservacao;
 import project.doa.solidario.modals.enums.Situacao;
 
 import java.time.LocalDate;
-import java.time.LocalDateTime;
+
 
 @Entity
 public class Item extends EntityId{
@@ -21,7 +21,7 @@ public class Item extends EntityId{
     @Column(nullable = false)
     private Long quantidade;
 
-    @Column(nullable = false)
+    @Column(nullable = true)
     private Double valor;
 
     @Column()
@@ -46,25 +46,38 @@ public class Item extends EntityId{
 
     //INTEGRAÇÃO
     @ManyToOne
-    @JoinColumn(nullable = true)
+    @JoinColumn(nullable = false)
     private SubCategoria subCategoria;
 
     //PESSOA EM CACHE E SALVA JUNTO
-    @ManyToOne(cascade = CascadeType.PERSIST)
-    @JoinColumn(name = "pessoa_id")
-    private Pessoa pessoa;
+    @ManyToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "pessoa_doador")
+    private Pessoa pessoadoador;
+
+    //DUAS PESSOAS
+    @ManyToOne //(cascade = CascadeType.ALL)
+    @JoinColumn(name = "pessoa_beneficiario")
+    private Pessoa pessoabeneficiario;
 
 
 
     //GET AND SET
 
 
-    public Pessoa getPessoa() {
-        return pessoa;
+    public Pessoa getPessoadoador() {
+        return pessoadoador;
     }
 
-    public void setPessoa(Pessoa pessoa) {
-        this.pessoa = pessoa;
+    public void setPessoadoador(Pessoa pessoadoador) {
+        this.pessoadoador = pessoadoador;
+    }
+
+    public Pessoa getPessoabeneficiario() {
+        return pessoabeneficiario;
+    }
+
+    public void setPessoabeneficiario(Pessoa pessoabeneficiario) {
+        this.pessoabeneficiario = pessoabeneficiario;
     }
 
     public String getDescricao() {
@@ -150,6 +163,7 @@ public class Item extends EntityId{
 
     //TOSTRING
 
+
     @Override
     public String toString() {
         return "Item{" +
@@ -163,7 +177,8 @@ public class Item extends EntityId{
                 ", estadoConservacao=" + estadoConservacao +
                 ", situacao=" + situacao +
                 ", subCategoria=" + subCategoria +
-                ", pessoa=" + pessoa +
+                ", pessoadoador=" + pessoadoador +
+                ", pessoabeneficiario=" + pessoabeneficiario +
                 '}';
     }
 }

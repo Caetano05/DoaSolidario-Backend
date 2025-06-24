@@ -6,6 +6,7 @@ import project.doa.solidario.modals.Endereco;
 import project.doa.solidario.modals.Item;
 import project.doa.solidario.modals.Pessoa;
 import project.doa.solidario.modals.enums.Categoria;
+import project.doa.solidario.modals.enums.Situacao;
 import project.doa.solidario.repositories.EnderecoRepository;
 import project.doa.solidario.repositories.ItemRepository;
 import project.doa.solidario.repositories.PessoaRepository;
@@ -26,8 +27,8 @@ public class ItemService {
 
     //SALVA O ITEM
     public Item salvar(Item entity) {
-        if (entity.getPessoa() != null) {
-            Pessoa pessoa = entity.getPessoa();
+        if (entity.getPessoadoador() != null) {
+            Pessoa pessoa = entity.getPessoadoador();
 
             if (pessoa.getEndereco() != null && pessoa.getEndereco().getId() == null) {
                 Endereco enderecoSalvo = repositorioEndereco.save(pessoa.getEndereco());
@@ -36,7 +37,7 @@ public class ItemService {
 
             if (pessoa.getCpf() == null) {
                 pessoa = repositorioPessoa.save(pessoa);
-                entity.setPessoa(pessoa);
+                entity.setPessoadoador(pessoa);
             }
         }
 
@@ -44,12 +45,15 @@ public class ItemService {
     }
 
     //LISTAGEM DOS ITENS
-    public List<Item> listarTodos(Categoria categoria) {
+    public List<Item> listarTodos(Categoria categoria, Situacao situacao) {
         if(categoria == null) {
             return repositorioItem.findAll();
         }
+        if (situacao == null){
+            return repositorioItem.findAll();
+        }
         
-        return repositorioItem.findByCategoria(categoria);
+        return repositorioItem.findByCategoriaAndSituacao(categoria, situacao);
     }
 
     //LISTA ITEM POR ID
@@ -72,7 +76,8 @@ public class ItemService {
             item.setEstadoConservacao(ItemAlterado.getEstadoConservacao());
             item.setSituacao(ItemAlterado.getSituacao());
             item.setSubCategoria(ItemAlterado.getSubCategoria());
-            item.setPessoa(ItemAlterado.getPessoa());
+            item.setPessoadoador(ItemAlterado.getPessoadoador());
+            item.setPessoabeneficiario(ItemAlterado.getPessoabeneficiario());
             return repositorioItem.save(item);
         }
 
