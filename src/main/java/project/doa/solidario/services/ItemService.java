@@ -46,14 +46,13 @@ public class ItemService {
 
     //LISTAGEM DOS ITENS
     public List<Item> listarTodos(Categoria categoria, Situacao situacao) {
-        if(categoria == null) {
+        if (categoria != null) {
+            return repositorioItem.findByCategoria(categoria);
+        } else if (situacao != null) {
+            return repositorioItem.findBySituacao(situacao);
+        } else {
             return repositorioItem.findAll();
         }
-        if (situacao == null){
-            return repositorioItem.findAll();
-        }
-        
-        return repositorioItem.findByCategoriaAndSituacao(categoria, situacao);
     }
 
     //LISTA ITEM POR ID

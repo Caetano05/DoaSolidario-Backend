@@ -25,10 +25,17 @@ public class ItemController{
     }
 
     @GetMapping
-    public  ResponseEntity findAll(Categoria categoria, Situacao situacao){
+    public ResponseEntity<?> findAll(
+            @RequestParam(required = false) Categoria categoria,
+            @RequestParam(required = false) Situacao situacao
+    ) {
         List<Item> itens = serviceItem.listarTodos(categoria, situacao);
         return ResponseEntity.ok(itens);
     }
+
+
+
+
     @GetMapping("/{id}")
     public  ResponseEntity findById(@PathVariable("id") Long id){
         Item item = serviceItem.listarPorId(id);
