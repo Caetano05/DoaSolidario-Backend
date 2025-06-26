@@ -50,7 +50,7 @@ public class Item extends EntityId{
     private SubCategoria subCategoria;
 
     //PESSOA EM CACHE E SALVA JUNTO
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne //(cascade = CascadeType.ALL)
     @JoinColumn(name = "pessoa_doador")
     private Pessoa pessoadoador;
 
