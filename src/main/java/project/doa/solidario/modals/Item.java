@@ -1,51 +1,84 @@
 package project.doa.solidario.modals;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
+import jakarta.persistence.*;
 import project.doa.solidario.modals.enums.Categoria;
 import project.doa.solidario.modals.enums.EstadoConservacao;
 import project.doa.solidario.modals.enums.Situacao;
 
-import java.time.LocalDateTime;
+import java.time.LocalDate;
+
 
 @Entity
 public class Item extends EntityId{
 
     // ATRIBUTOS
-
     @Column(nullable = false)
     private String descricao;
 
     @Column(nullable = false)
-    private LocalDateTime data_cadastro;
+    private LocalDate data_cadastro;
 
     @Column(nullable = false)
     private Long quantidade;
 
-    @Column(nullable = false)
-    private Long valor;
+    @Column(nullable = true)
+    private Double valor;
 
-    @Column(nullable = false)
+    @Column()
     private Boolean caminhao;
 
-    @Column(nullable = false)
+    @Column()
     private String anexo;
 
 
     // ENUMS
-
+    @Enumerated(EnumType.STRING)
     @Column(nullable = false)
     private Categoria categoria;
 
+    @Enumerated(EnumType.STRING)
     @Column(nullable = false)
     private EstadoConservacao estadoConservacao;
 
+    @Enumerated(EnumType.STRING)
     @Column(nullable = false)
     private Situacao situacao;
 
+    //INTEGRAÇÃO
+    @ManyToOne
+    @JoinColumn(nullable = false)
+    private SubCategoria subCategoria;
 
-    // GET AND SET
+    //PESSOA EM CACHE E SALVA JUNTO
+    @ManyToOne //(cascade = CascadeType.ALL)
+    @JoinColumn(name = "pessoa_doador")
+    private Pessoa pessoadoador;
 
+    //DUAS PESSOAS
+    @ManyToOne //(cascade = CascadeType.ALL)
+    @JoinColumn(name = "pessoa_beneficiario")
+    private Pessoa pessoabeneficiario;
+
+
+
+    //GET AND SET
+
+
+    public Pessoa getPessoadoador() {
+        return pessoadoador;
+    }
+
+    public void setPessoadoador(Pessoa pessoadoador) {
+        this.pessoadoador = pessoadoador;
+    }
+
+    public Pessoa getPessoabeneficiario() {
+        return pessoabeneficiario;
+    }
+
+    public void setPessoabeneficiario(Pessoa pessoabeneficiario) {
+        this.pessoabeneficiario = pessoabeneficiario;
+    }
 
     public String getDescricao() {
         return descricao;
@@ -55,12 +88,16 @@ public class Item extends EntityId{
         this.descricao = descricao;
     }
 
-    public LocalDateTime getData_cadastro() {
+    public LocalDate getData_cadastro() {
         return data_cadastro;
     }
 
-    public void setData_cadastro(LocalDateTime data_cadastro) {
+    public void setData_cadastro(LocalDate data_cadastro) {
         this.data_cadastro = data_cadastro;
+    }
+
+    public void setSubCategoria(SubCategoria subCategoria) {
+        this.subCategoria = subCategoria;
     }
 
     public Long getQuantidade() {
@@ -71,11 +108,11 @@ public class Item extends EntityId{
         this.quantidade = quantidade;
     }
 
-    public Long getValor() {
+    public Double getValor() {
         return valor;
     }
 
-    public void setValor(Long valor) {
+    public void setValor(Double valor) {
         this.valor = valor;
     }
 
@@ -119,8 +156,13 @@ public class Item extends EntityId{
         this.situacao = situacao;
     }
 
+    public SubCategoria getSubCategoria() {
+        return subCategoria;
+    }
 
-    // TOSTRING
+
+    //TOSTRING
+
 
     @Override
     public String toString() {
@@ -134,6 +176,9 @@ public class Item extends EntityId{
                 ", categoria=" + categoria +
                 ", estadoConservacao=" + estadoConservacao +
                 ", situacao=" + situacao +
+                ", subCategoria=" + subCategoria +
+                ", pessoadoador=" + pessoadoador +
+                ", pessoabeneficiario=" + pessoabeneficiario +
                 '}';
     }
 }
