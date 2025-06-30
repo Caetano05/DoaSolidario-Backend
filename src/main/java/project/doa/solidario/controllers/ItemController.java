@@ -5,6 +5,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import project.doa.solidario.modals.Item;
 import project.doa.solidario.modals.enums.Categoria;
+import project.doa.solidario.modals.enums.Situacao;
 import project.doa.solidario.services.ItemService;
 
 import java.net.URI;
@@ -24,10 +25,17 @@ public class ItemController{
     }
 
     @GetMapping
-    public  ResponseEntity findAll(Categoria categoria){
-        List<Item> itens = serviceItem.listarTodos(categoria);
+    public ResponseEntity<?> findAll(
+            @RequestParam(required = false) Categoria categoria,
+            @RequestParam(required = false) Situacao situacao
+    ) {
+        List<Item> itens = serviceItem.listarTodos(categoria, situacao);
         return ResponseEntity.ok(itens);
     }
+
+
+
+
     @GetMapping("/{id}")
     public  ResponseEntity findById(@PathVariable("id") Long id){
         Item item = serviceItem.listarPorId(id);

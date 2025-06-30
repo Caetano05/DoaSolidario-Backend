@@ -9,7 +9,7 @@ public class Endereco extends EntityId{
     private String cidade;
 
     @Column(nullable = true)
-    private Long cep;
+    private String cep;
 
     @Column(nullable = false)
     private String rua;
@@ -29,11 +29,11 @@ public class Endereco extends EntityId{
         this.cidade = cidade;
     }
 
-    public Long getCep() {
+    public String getCep() {
         return cep;
     }
 
-    public void setCep(Long cep) {
+    public void setCep(String cep) {
         this.cep = cep;
     }
 
